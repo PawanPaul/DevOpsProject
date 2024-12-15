@@ -1,0 +1,6 @@
+services:
+  bookdb:
+    image: mysql
+    ports: -"3307:3306"
+  bookdbfrontend:
+    image: pawanpauljay/html-server-image:v1
