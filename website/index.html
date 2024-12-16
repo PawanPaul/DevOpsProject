@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
+    <script src="index.js" type="text/javascript"></script>
     <body>
         <h1><center>Welcome to BookDB, your one stop for all books!</center></h1>
-        <input type="text" placeholder="bookname" name="nameinput">
-        <button name="submit">Search</button><br>
+        <input type="text" placeholder="bookname" id="nameinput">
+        <button name="submit" onclick="searchSys(nameinput.value)">Search</button><br>
         <button><a href="adddata.html">Add to collection</a></button>
     </body>
 </html>
-<script src="index.js" type="text/javascript">
