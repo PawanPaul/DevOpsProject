@@ -20,7 +20,7 @@ pipeline {
                 echo 'Building Docker image..'
                 script {
                     // Build the Docker image from the website folder
-                    def image = docker.build("${DOCKER_IMAGE_NAME}:latest", "-f Dockerfile ./website")
+                    def image = docker.build("${DOCKER_IMAGE_NAME}:latest", "-f ./website/Dockerfile ./website")
                 }
             }
         }
