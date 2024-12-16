@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website-deployment
+  namespace: devops-tools
+spec:
+  containers:
+    - name: website 
+      image: pawanpauljay/html-server-image
+    - name: database
+      image: mysql

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+spec:
+  selector:
+    matchLabels:
+      app: database
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - image: mysql
+        name: database
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: password
+        ports:
+        - containerPort: 3306
+          name: database
+        volumeMounts:
+        - name: database-pv
+          mountPath: /var/lib/msql
+      volumes:
+      - name: database-pv
+        persistentVolumeClaim:
+          claimName: database-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: database
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: database

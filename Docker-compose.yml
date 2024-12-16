@@ -1,6 +1,8 @@
 services:
   bookdb:
+    restart: always
     image: mysql
     ports: -"3307:3306"
   bookdbfrontend:
+    restart: always
     image: pawanpauljay/html-server-image:v1
