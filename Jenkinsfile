@@ -1,30 +1,21 @@
-node {
-    def app
+pipeline {
+    agent any
 
-    stage('Clone repository') {
-      
-
-        checkout scm
-    }
-
-    stage('Build image') {
-  
-       app = docker.build("pawanpauljay/html-server-image")
-    }
-
-    stage('Test image') {
-  
-
-        app.inside {
-            sh 'echo "Tests passed"'
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
         }
-    }
-
-    stage('Push image') {
-        
-        docker.withRegistry('https://registry.hub.docker.com', 'git') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
         }
     }
 }
